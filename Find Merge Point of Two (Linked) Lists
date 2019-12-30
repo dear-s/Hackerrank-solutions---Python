@@ -1,0 +1,46 @@
+def findMergeNode(head1, head2):
+
+    length_of_ll1 = 0
+    length_of_ll2 = 0
+
+    c1 = head1
+    c2 = head2
+
+    while c1:
+        length_of_ll1+=1
+        c1=c1.next
+    
+    while c2:
+        length_of_ll2+=1
+        c2 = c2.next
+
+    #lengths are ready
+
+    if length_of_ll1 >= length_of_ll2:
+        diff = length_of_ll1 - length_of_ll2
+    else:
+        diff = length_of_ll2 - length_of_ll1
+
+    #difference is ready - margin
+
+    t1 = head1
+    t2 = head2
+
+    #leveling the pointers
+    while diff != 0:
+        if length_of_ll1 > length_of_ll2:
+            t1 = t1.next
+            diff -= 1
+        elif length_of_ll2 > length_of_ll1:
+            t2 = t2.next
+            diff -= 1
+
+    rlen = min(length_of_ll1, length_of_ll2) #length of shortest linked list - required_length
+
+    while rlen != 0:
+        if t1 == t2: #simply traversing through the linked list nodes
+            return t1.data
+        else:
+            t1 = t1.next
+            t2 = t2.next
+            rlen -= 1
