@@ -1,0 +1,21 @@
+#cycle - true - 1
+#no cycle - false - 0
+
+#using Floyd’s Tortoise and Hare cycle-finding algorithm - Our slow pointer moves forward 1 node at a time, 
+#and our fast pointer moves forward 2 nodes at a time. If at any point in time these pointers refer to the same object,
+#then there is a loop; otherwise, the list does not contain a loop.
+
+def has_cycle(head): #return true or false
+
+    fast = head
+    slow = head
+
+    while fast is not None and fast.next is not None:
+        fast = fast.next.next
+        slow = slow.next
+
+        if slow == fast:
+            return True
+    
+    else:
+        return False
