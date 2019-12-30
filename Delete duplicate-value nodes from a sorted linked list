@@ -1,0 +1,25 @@
+def removeDuplicates(head):
+    if head is None:
+        return None
+    else:
+
+        list_for_repeating_values = [] #will compare the values from this already occured lists
+        current = head
+        prev = head
+
+        op = prev
+
+        while current.next is not None:
+            list_for_repeating_values.append(current.data)
+
+            if current.next.data in list_for_repeating_values:
+                current = current.next
+            else:
+                current = current.next
+                prev.next = current
+                prev = prev.next
+
+        if current.next is None:
+            prev.next = None
+
+        return op
