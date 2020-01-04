@@ -1,0 +1,13 @@
+
+def preOrder(root):
+    #Write your code here
+
+
+    if root is None:
+        return
+    
+    #recursive method - easy 
+    #Preorder traversal - root left right
+    print (root.info, end = " ")
+    preOrder(root.left)
+    preOrder(root.right) 
