@@ -1,0 +1,13 @@
+def postOrder(root):
+    #Write your code here
+
+    if root is None:
+        return
+    
+    #recursive method - easy 
+    #Postorder traversal - left right root
+    
+    postOrder(root.left)
+    postOrder(root.right) 
+    print(root.info, end = " ")
+    
