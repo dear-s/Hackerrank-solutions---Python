@@ -15,19 +15,22 @@
 
 #first recurring character - 'first' in the list
 
-a = [2,3,4,5]
+a = [1]
 
-track = []
-track.append(a[0]) # track = [2]
+if len(a) == 0 or len(a) == 1:
+  print(None)
 
-for i in range(1, len(a)):
-  if a[i] in track:
-    print(a[i])
-    break
-  else:
-    track.append(a[i])
+else:
+  track = []
+  track.append(a[0]) # track = [2]
+  for i in range(1, len(a)):
+    if a[i] in track:
+      print(a[i])
+      break
+    else:
+      track.append(a[i])
 
-  if i == len(a) -1:
-    print (None)
+    if i == len(a) -1:
+      print (None)
 
 
