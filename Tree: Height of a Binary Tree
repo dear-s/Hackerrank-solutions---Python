@@ -1,0 +1,19 @@
+def height(root):
+    # max height of the tree
+
+    return check_height(root)
+
+
+def check_height(root):
+
+    if root is None:
+        return 0
+    if root.left is None and root.right is None:
+        return 0
+    if root.left is None: # and right is not none
+        return 1 + check_height(root.right)
+    if root.right is None: # and left is not none
+        return 1 + check_height(root.left)
+    if root.left is not None and root.right is not None:
+        # both are not none
+        return 1 + max(check_height(root.left), check_height(root.right))
