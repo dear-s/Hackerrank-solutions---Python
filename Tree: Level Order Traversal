@@ -1,0 +1,30 @@
+def levelOrder(root):
+    #Write your code here
+
+    queue = []
+
+    if root is None:
+        return None
+
+    queue.append(root)
+    values = []
+    values.append(root.info)
+
+    while len(queue):
+        val = []
+        for a in queue:
+            if a.left:
+                val.append(a.left)
+                values.append(a.left.info)
+            if a.right:
+                val.append(a.right)
+                values.append(a.right.info)
+        
+        queue = val
+
+    output = ""
+
+    for i in values:
+        output += str(i) + " "
+
+    print( output)
