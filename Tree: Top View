@@ -1,0 +1,101 @@
+class Node:
+    def __init__(self, info): 
+        self.info = info  
+        self.left = None  
+        self.right = None 
+        self.level = None 
+
+    def __str__(self):
+        return str(self.info) 
+
+class BinarySearchTree:
+    def __init__(self): 
+        self.root = None
+
+    def create(self, val):  
+        if self.root == None:
+            self.root = Node(val)
+        else:
+            current = self.root
+         
+            while True:
+                if val < current.info:
+                    if current.left:
+                        current = current.left
+                    else:
+                        current.left = Node(val)
+                        break
+                elif val > current.info:
+                    if current.right:
+                        current = current.right
+                    else:
+                        current.right = Node(val)
+                        break
+                else:
+                    break
+
+"""
+Node is defined as
+self.left (the left child of the node)
+self.right (the right child of the node)
+self.info (the value of the node)
+"""
+def topView(root):
+    #Write your code here
+
+    dic = {} # {0: [1], 1: [2,3], 2: [5,4], 3: [6]}
+    # for top view, take first elements! 1 2 5 6
+
+    if root is None:
+        return None
+    
+    queue = [] # storing visited nodes with cordinates l/r [[1,0],[2,1],[5,2],[3,1],[6,3],[4,2]]
+    queue.append([root,0])
+
+    dic[0] = [root.info]
+
+    while len(queue):
+
+        level = []
+        for a in queue: #a = [1(root),0]
+            if a[0].left:
+                index = a[1] - 1
+
+                if index in dic:
+                    dic[index].append(a[0].left.info)
+                else:
+                    dic[index] = [a[0].left.info]
+
+                level.append([a[0].left, index])
+            if a[0].right:
+                index = a[1] + 1
+                
+                if index in dic:
+                    dic[index].append(a[0].right.info)
+                else:
+                    dic[index] = [a[0].right.info]
+
+                level.append([a[0].right, index])
+
+        queue = level
+    
+    # dictionary is formed - this is also the solution for vertical order traversal [till here]
+    # print (dic) - {0: [1], 1: [2,3], 2: [5,4], 3: [6]}
+
+    l=list(dic.items()) # sorting the keys
+    l.sort()
+    dic = dict(l)
+
+    result = []
+
+    for k,v in dic.items():
+        result.append(dic[k][0])
+
+
+    # result = [1,2,5,6] convert to 1 2 5 6
+    string = ""
+
+    for i in result:
+        string += str(i) + " "
+
+    print(string)
