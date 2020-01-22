@@ -1,0 +1,21 @@
+def insert(self, val):
+        
+  if self.root is not None:
+      self.insert_(val, self.root)
+  else:
+      self.root = Node(val)
+
+  return self.root
+
+def insert_(self, value, current_node):
+
+  if value > current_node.info:
+      if current_node.right is None:
+          current_node.right = Node(value)
+      else:
+          self.insert_(value, current_node.right)
+  else:
+      if current_node.left is None:
+          current_node.left = Node(value)
+      else:
+          self.insert_(value, current_node.left)
