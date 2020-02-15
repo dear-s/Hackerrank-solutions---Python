@@ -1,0 +1,13 @@
+def sockMerchant(n, ar):
+
+    socks = 0
+    temp_arr = []
+
+    for i in ar:
+        if i in temp_arr:
+            socks += 1
+            temp_arr.remove(i)
+        else:
+            temp_arr.append(i)
+    
+    return socks
